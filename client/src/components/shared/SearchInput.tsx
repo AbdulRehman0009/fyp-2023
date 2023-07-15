@@ -57,7 +57,7 @@ const SearchInput: React.FC<IProps> = (props) => {
 
         setSuggestions(users);
         setSuggesting(false);
-      } catch (e) {
+      } catch (e: any) {
         setSuggesting(false);
         setSuggestions([]);
         setError(e);

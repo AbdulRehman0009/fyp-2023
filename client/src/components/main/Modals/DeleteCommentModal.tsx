@@ -32,7 +32,7 @@ const DeleteCommentModal: React.FC<IProps> = (props) => {
                 autoClose: 2000
             });
             setIsDeleting(false);
-        } catch (e) {
+        } catch (e: any) {
             setIsDeleting(false);
             setError(e);
         }

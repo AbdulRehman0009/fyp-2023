@@ -73,7 +73,7 @@ const ChatBox: React.FC<IProps> = ({ user, target }) => {
             if (!target.offset || target.offset < 1) {
                 dummyEl.current?.scrollIntoView();
             }
-        } catch (e) {
+        } catch (e: any) {
             if (didMount) {
                 setLoading(false);
                 setError(e);
@@ -93,7 +93,7 @@ const ChatBox: React.FC<IProps> = ({ user, target }) => {
                     setText('');
                     setError(null);
                 }
-            } catch (e) {
+            } catch (e: any) {
                 if (didMount) {
                     setSending(false);
                     setError(e);

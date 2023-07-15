@@ -45,7 +45,7 @@ router.post(
                 await User.findByIdAndUpdate(userID, { $push: { bookmarks: post_id } });
                 res.status(200).send(makeResponseJson({ state: true }));
             }
-        } catch (e) {
+        } catch (e: any) {
             console.log('CANT BOOKMARK POST ', e);
             next(e)
         }
@@ -91,7 +91,7 @@ router.get(
             });
 
             res.status(200).send(makeResponseJson({ bookmarks: result, total: countBookmarks.length }));
-        } catch (e) {
+        } catch (e: any) {
             console.log('CANT GET BOOKMARKS ', e);
             next(e);
         }

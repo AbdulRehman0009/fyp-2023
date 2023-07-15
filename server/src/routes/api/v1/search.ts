@@ -82,7 +82,7 @@ router.get(
             }
 
             res.status(200).send(makeResponseJson(result));
-        } catch (e) {
+        } catch (e: any) {
             console.log('CANT PERFORM SEARCH: ', e);
             next(e);
         }

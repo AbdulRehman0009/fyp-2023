@@ -96,7 +96,7 @@ router.post(
       return res
         .status(200)
         .send(makeResponseJson({ ...post.toObject(), isOwnPost: true }));
-    } catch (e) {
+    } catch (e: any) {
       console.log(e);
       next(e);
     }
@@ -176,7 +176,7 @@ router.get(
       });
 
       res.status(200).send(makeResponseJson(uPosts));
-    } catch (e) {
+    } catch (e: any) {
       console.log(e);
       next(e);
     }
@@ -262,7 +262,7 @@ router.post(
       res
         .status(200)
         .send(makeResponseJson({ post: result, state: isPostLiked }));
-    } catch (e) {
+    } catch (e: any) {
       console.log(e);
       next(e);
     }
@@ -320,7 +320,7 @@ router.patch(
       } else {
         return next(new ErrorHandler(401));
       }
-    } catch (e) {
+    } catch (e: any) {
       console.log("CANT EDIT POST :", e);
       next(e);
     }
@@ -367,7 +367,7 @@ router.delete(
       } else {
         return next(new ErrorHandler(401));
       }
-    } catch (e) {
+    } catch (e: any) {
       console.log("CANT DELETE POST", e);
       next(e);
     }
@@ -409,7 +409,7 @@ router.get(
         isOwnPost,
       };
       res.status(200).send(makeResponseJson(result));
-    } catch (e) {
+    } catch (e: any) {
       console.log("CANT GET POST", e);
       next(e);
     }
@@ -455,7 +455,7 @@ router.get(
       });
 
       res.status(200).send(makeResponseJson(result));
-    } catch (e) {
+    } catch (e: any) {
       console.log("CANT GET POST LIKERS", e);
       next(e);
     }

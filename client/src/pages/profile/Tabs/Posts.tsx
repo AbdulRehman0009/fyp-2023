@@ -75,7 +75,7 @@ const Posts: React.FC<IProps> = (props) => {
           setOffset(offset + 1);
         }
       }
-    } catch (e) {
+    } catch (e: any) {
       if (didMount) {
         setError(e);
         setIsLoading(false);
@@ -96,7 +96,7 @@ const Posts: React.FC<IProps> = (props) => {
 
       toast.dismiss();
       toast.dark("Post created successfully.");
-    } catch (e) {
+    } catch (e: any) {
       if (didMount) {
         setIsCreatingPost(false);
       }

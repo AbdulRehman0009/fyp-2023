@@ -43,7 +43,7 @@ const PostLikesModal: React.FC<IProps> = (props) => {
                 setLikes(result);
                 setIsLoading(false);
             }
-        } catch (e) {
+        } catch (e: any) {
             if (didMount) {
                 setIsLoading(false);
                 setError(e);

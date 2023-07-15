@@ -32,7 +32,7 @@ const BookmarkButton: React.FC<IProps> = (props) => {
                     autoClose: 2000
                 });
             }
-        } catch (e) {
+        } catch (e: any) {
             console.log(e);
         }
     }

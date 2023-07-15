@@ -89,7 +89,7 @@ router.post(
                 await NewsFeed.insertMany(feeds);
             }
             res.status(200).send(makeResponseJson({ state: true }));
-        } catch (e) {
+        } catch (e: any) {
             console.log('CANT FOLLOW USER, ', e);
             next(e);
         }
@@ -139,7 +139,7 @@ router.post(
 
                 res.status(200).send(makeResponseJson({ state: false }));
             });
-        } catch (e) {
+        } catch (e: any) {
             console.log('CANT FOLLOW USER, ', e);
             next(e);
         }
@@ -221,7 +221,7 @@ router.get(
             }
 
             res.status(200).send(makeResponseJson(finalResult));
-        } catch (e) {
+        } catch (e: any) {
             next(e);
         }
     });
@@ -300,7 +300,7 @@ router.get(
             }
 
             res.status(200).send(makeResponseJson(finalResult))
-        } catch (e) {
+        } catch (e: any) {
             console.log('CANT GET FOLLOWERS', e);
             next(e);
         }
@@ -366,7 +366,7 @@ router.get(
             // ---
 
             res.status(200).send(makeResponseJson(people));
-        } catch (e) {
+        } catch (e: any) {
             console.log('CANT GET SUGGESTED PEOPLE', e);
             next(e);
         }

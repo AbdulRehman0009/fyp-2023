@@ -30,7 +30,7 @@ const FollowButton: React.FC<IProps> = (props) => {
       }
 
       didMount && setLoading(false);
-    } catch (e) {
+    } catch (e: any) {
       didMount && setLoading(false);
       console.log(e);
     }

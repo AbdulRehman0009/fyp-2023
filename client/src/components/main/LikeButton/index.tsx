@@ -32,7 +32,7 @@ const LikeButton: React.FC<IProps> = (props) => {
       }
 
       props.likeCallback(post);
-    } catch (e) {
+    } catch (e: any) {
       didMount && setLoading(false);
       console.log(e);
     }

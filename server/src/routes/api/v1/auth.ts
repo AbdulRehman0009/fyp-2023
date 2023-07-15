@@ -114,10 +114,12 @@ router.get(
 //@route DELETE /api/v1/logout
 router.delete("/v1/logout", (req, res) => {
   try {
-    req.logOut();
+    req.logOut((error) => {
+      console.log(error);
+    });
 
     res.sendStatus(200);
-  } catch (e) {
+  } catch (e: any) {
     res.status(422).send(
       makeResponseJson({
         status_code: 422,

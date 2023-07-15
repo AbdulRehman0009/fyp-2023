@@ -69,7 +69,7 @@ router.post(
             });
 
             res.status(200).send(makeResponseJson(message));
-        } catch (e) {
+        } catch (e: any) {
             console.log('CANT SEND MESSAGE: ', e);
             next(e);
         }
@@ -173,7 +173,7 @@ router.get(
             const sorted = agg.sort((a, b) => new Date(b.createdAt).valueOf() - new Date(a.createdAt).valueOf());
 
             res.status(200).send(makeResponseJson(sorted));
-        } catch (e) {
+        } catch (e: any) {
             console.log('CANT GET MESSAGES', e);
             next(e);
         }
@@ -218,7 +218,7 @@ router.get(
             const totalUnseen = agg.reduce((acc, obj) => acc + obj.count, 0);
 
             res.status(200).send(makeResponseJson({ count: totalUnseen }));
-        } catch (e) {
+        } catch (e: any) {
             console.log('CANT GET MESSAGES', e);
             next(e);
         }
@@ -243,7 +243,7 @@ router.patch(
                 });
 
             res.status(200).send(makeResponseJson({ state: true }));
-        } catch (e) {
+        } catch (e: any) {
             console.log('CANT READ MESSAGES');
             next(e);
         }
@@ -285,7 +285,7 @@ router.get(
             }
 
             res.status(200).send(makeResponseJson(mapped));
-        } catch (e) {
+        } catch (e: any) {
             console.log('CANT GET MESSAGES FROM USER', e);
             next(e);
         }

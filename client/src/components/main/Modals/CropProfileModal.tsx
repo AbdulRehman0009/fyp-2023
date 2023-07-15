@@ -33,7 +33,7 @@ const CropProfileModal: React.FC<IProps> = (props) => {
             props.onCropSuccessCallback(file);
             clearState();
             URL.revokeObjectURL(url);
-        } catch (e) {
+        } catch (e: any) {
             console.error('ERROR CROPPING: ', e);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps

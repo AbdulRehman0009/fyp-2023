@@ -40,7 +40,7 @@ const Following: React.FC<IProps> = ({ username }) => {
         setOffset(offset + 1);
         setError(null);
       }
-    } catch (e) {
+    } catch (e: any) {
       console.log(e);
       if (didMount) {
         setIsLoading(false);

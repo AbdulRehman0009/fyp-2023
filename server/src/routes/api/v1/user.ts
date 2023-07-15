@@ -64,7 +64,7 @@ router.get(
             toObjectUser.isOwnProfile = reqUser.username === username
 
             res.status(200).send(makeResponseJson(toObjectUser));
-        } catch (e) {
+        } catch (e: any) {
             console.log(e)
             next(e);
         }
@@ -107,7 +107,7 @@ router.patch(
                 });
 
             res.status(200).send(makeResponseJson(newUser.toUserJSON()));
-        } catch (e) {
+        } catch (e: any) {
             console.log(e);
             next(e);
         }
@@ -137,7 +137,7 @@ router.post(
             });
 
             res.status(200).send(makeResponseJson(image));
-        } catch (e) {
+        } catch (e: any) {
             console.log('CANT UPLOAD FILE: ', e);
             next(e);
         }

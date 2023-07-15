@@ -39,7 +39,7 @@ const Post: React.FC<RouteComponentProps<{ post_id: string; }>> = ({ history, ma
             console.log(fetchedPost);
             setIsLoading(false);
             setPost(fetchedPost);
-        } catch (e) {
+        } catch (e: any) {
             console.log(e);
             setIsLoading(false);
             setError(e);

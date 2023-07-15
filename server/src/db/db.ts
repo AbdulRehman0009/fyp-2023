@@ -20,7 +20,7 @@ export default async function () {
   try {
     await mongoose.connect(mongoUri, options);
     console.log(`MongoDB connected as ${mongoUri}`);
-  } catch (e) {
+  } catch (e: any) {
     console.log("Error connecting to mongoose: ", e);
   }
 }

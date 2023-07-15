@@ -29,7 +29,7 @@ const SuggestedPeople = () => {
         setOffset(offset + 1);
         setIsLoading(false);
       }
-    } catch (e) {
+    } catch (e: any) {
       if (didMount) {
         setIsLoading(false);
         setError(e);

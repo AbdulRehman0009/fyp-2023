@@ -69,7 +69,7 @@ router.post(
             }
 
             res.status(200).send(makeResponseJson(comment));
-        } catch (e) {
+        } catch (e: any) {
             console.log('CAN"T COMMENT', e)
             next(e);
         }
@@ -131,7 +131,7 @@ router.get(
 
             console.log(result)
             res.status(200).send(makeResponseJson(result));
-        } catch (e) {
+        } catch (e: any) {
             console.log(e);
             next(e);
         }
@@ -170,7 +170,7 @@ router.delete(
             } else {
                 res.sendStatus(401);
             }
-        } catch (e) {
+        } catch (e: any) {
             console.log(e);
             next(e);
         }
@@ -214,7 +214,7 @@ router.patch(
                 return next(new ErrorHandler(401));
             }
 
-        } catch (e) {
+        } catch (e: any) {
             next(e);
         }
     }

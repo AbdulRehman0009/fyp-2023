@@ -69,7 +69,7 @@ router.get(
                 result = feeds;
             }
             res.status(200).send(makeResponseJson(result));
-        } catch (e) {
+        } catch (e: any) {
             console.log('CANT GET FEED', e);
             next(e);
         }

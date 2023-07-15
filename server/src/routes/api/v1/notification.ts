@@ -33,7 +33,7 @@ router.get(
             }
 
             res.status(200).send(makeResponseJson(result));
-        } catch (e) {
+        } catch (e: any) {
             console.log(e);
             next(e);
         }
@@ -48,7 +48,7 @@ router.get(
             const notif = await Notification.find({ target: req.user._id, unread: true });
 
             res.status(200).send(makeResponseJson({ count: notif.length }));
-        } catch (e) {
+        } catch (e: any) {
             console.log('CANT GET UNREAD NOTIFICATIONS', e);
             next(e);
         }
@@ -69,7 +69,7 @@ router.patch(
                         }
                     });
             res.status(200).send(makeResponseJson({ state: false }));
-        } catch (e) {
+        } catch (e: any) {
             console.log('CANT MARK ALL AS UNREAD', e);
             next(e);
         }
@@ -93,7 +93,7 @@ router.patch(
                 });
 
             res.status(200).send(makeResponseJson({ state: false })) // state = false EQ unread = false
-        } catch (e) {
+        } catch (e: any) {
             next(e);
         }
     }

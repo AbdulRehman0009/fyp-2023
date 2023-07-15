@@ -8,7 +8,7 @@
     "build": "rimraf ./build && tsc && ef-tspm",
     "postinstall": "rimraf ./build && tsc && ef-tspm"
   },
-   "dependencies": {
+  "dependencies": {
     "@google-cloud/storage": "^5.7.2",
     "bad-words": "^3.0.4",
     "bcrypt": "^5.0.0",
@@ -64,7 +64,7 @@
     "mquery": "^3.2.3",
     "nodemon": "^2.0.6",
     "rimraf": "^3.0.2",
-    "ts-node": "^9.1.1",
+    "ts-node": "^10.9.1",
     "tsconfig-paths": "^3.9.0",
     "typescript": "^4.1.3"
   }

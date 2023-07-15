@@ -16,7 +16,7 @@ const localStorageMiddleware = (store: Store) => {
         try {
             const { settings } = store.getState();
             localStorage.setItem('foodie_theme', JSON.stringify(settings.theme));
-        } catch (e) {
+        } catch (e: any) {
             console.log('Error while saving in localStorage', e);
         }
         return result;

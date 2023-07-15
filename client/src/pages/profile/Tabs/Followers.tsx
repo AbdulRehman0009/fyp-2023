@@ -41,7 +41,7 @@ const Followers: React.FC<IProps> = ({ username }) => {
 
         setError(null);
       }
-    } catch (e) {
+    } catch (e: any) {
       if (didMount) {
         setIsLoading(false);
         setError(e);
