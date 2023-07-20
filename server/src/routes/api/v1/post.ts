@@ -182,7 +182,7 @@ router.get(
     }
   }
 );
-
+//like a post
 router.post(
   "/v1/like/post/:post_id",
   isAuthenticated,

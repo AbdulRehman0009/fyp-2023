@@ -116,8 +116,8 @@ router.delete("/v1/logout", (req, res) => {
   try {
     req.logOut((error) => {
       console.log(error);
-      
-    });
+
+    })
 
     res.sendStatus(200);
   } catch (e: any) {
