@@ -9,9 +9,9 @@ import { Link } from "react-router-dom";
 import { SocialLogin } from "~/components/shared";
 import { REGISTER } from "~/constants/routes";
 import { useDocumentTitle } from "~/hooks";
-import bg from "~/images/background01.jpg";
-import logo from "~/images/anjay500.png";
-import logo_dark from "~/images/anjay100.png";
+import bg from "~/images/blog3-01_0.png";
+import logo from "~/images/image-removebg-preview.png";
+import logo_dark from "~/images/image-removebg-preview.png";
 import { loginStart } from "~/redux/action/authActions";
 import { setAuthErrorMessage } from "~/redux/action/errorActions";
 import { IRootReducer } from "~/types/types";
@@ -22,7 +22,7 @@ const Login: React.FC = () => {
   const [isPasswordVisible, setPasswordVisible] = useState(false);
   const dispatch = useDispatch();
 
-  useDocumentTitle("Login to Socialo");
+  useDocumentTitle("Login to IT'z");
   useEffect(() => {
     return () => {
       dispatch(setAuthErrorMessage(null));
@@ -69,17 +69,10 @@ const Login: React.FC = () => {
         </Link>
         {/* -- INFO --- */}
         <h3 className="animate-fade text-white w-9/12 mb-14">
-          Connect with people around the world
+          Connect with people around the world with IT'z
         </h3>
         {/* --- CREDITS LINK --- */}
-        <a
-          className="animate-fade absolute bottom-8 left-8 text-1xs text-white underline"
-          target="_blank"
-          rel="noreferrer"
-          href="https://unsplash.com/photos/nYgy58eb9aw"
-        >
-          Photo: Credits to the photo owner
-        </a>
+        
       </div>
       <div className="animate-fade laptop:w-5/12 w-full flex items-center flex-col justify-center pt-8 laptop:pt-0 relative">
         <Link to="/">
@@ -99,7 +92,7 @@ const Login: React.FC = () => {
         <div className="w-full laptop:px-14 px-8 text-center laptop:text-left">
           <div>
             <h2 className="mt-6 text-xl laptop:text-2xl font-extrabold text-gray-900">
-              Login to Socialo
+              Login to IT'z
             </h2>
           </div>
           <form className="mt-8 space-y-6" onSubmit={onSubmit}>
@@ -190,7 +183,7 @@ const Login: React.FC = () => {
           </div>
           {/* --- COPYRIGHT -- */}
           <span className="text-gray-400 text-xs mx-auto text-center block mt-4">
-            &copy;Copyright {new Date().getFullYear()} Socialo
+            &copy;Copyright 2023 IT'z
           </span>
         </div>
       </div>

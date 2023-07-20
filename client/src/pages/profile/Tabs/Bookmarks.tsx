@@ -33,7 +33,7 @@ const Bookmarks: React.FC<IProps> = ({ username, isOwnProfile }) => {
   const [offset, setOffset] = useState(0);
   const didMount = useDidMount(true);
 
-  useDocumentTitle(`Bookmarks - ${username} | Socialo`);
+  useDocumentTitle(`Bookmarks - ${username} | TT'z`);
   useEffect(() => {
     fetchBookmarks();
     // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -6,9 +6,10 @@ import { LogoutModal, Messages, Notification } from "~/components/main";
 import { Avatar, SearchInput, ThemeToggler } from "~/components/shared";
 import { LOGIN, REGISTER } from "~/constants/routes";
 import { useModal } from "~/hooks";
-import logo from "~/images/anjay100.png";
+import logo from "~/images/image-removebg-preview.png";
 import { logoutStart } from "~/redux/action/authActions";
 import { IRootReducer } from "~/types/types";
+
 
 const NavBarMobile = lazy(() => import("./NavBarMobile"));
 
@@ -67,6 +68,7 @@ const NavBar: React.FC<IProps> = ({ isAuth, theme }) => {
                   <li className="flex items-center justify-center w-10 h-10 cursor-pointer rounded-full hover:bg-gray-200 dark:hover:bg-indigo-1100">
                     <Notification isAuth={isAuth} />
                   </li>
+                   
                 </ul>
                 <div className="flex items-center">
                   {/* ---- AVATAR WITH  USERNAME ----------- */}

@@ -13,5 +13,5 @@ const withAuth = <P extends IInjectedProps>(Component: React.ComponentType<P>) =
     }
 };
 
-export default withAuth;
+export default withAuth; 
 

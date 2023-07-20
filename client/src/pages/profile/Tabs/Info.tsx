@@ -10,7 +10,7 @@ const Info = () => {
     isOwnProfile: state.auth.username === state.profile.username,
   }));
   const history = useHistory();
-  useDocumentTitle(`Info - ${profile.username} | Socialo`);
+  useDocumentTitle(`Info - ${profile.username} | TT'z`);
 
   return (
     <div className="p-4 bg-white dark:bg-indigo-1000 rounded-md min-h-10rem">

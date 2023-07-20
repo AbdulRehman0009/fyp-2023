@@ -41,7 +41,7 @@ const Home: React.FC<IProps> = (props) => {
   const { isOpen, openModal, closeModal } = useModal();
   const from = props.location.state?.from || null;
 
-  useDocumentTitle("Socialo | Social Network");
+  useDocumentTitle("IT'z | Social Network");
   useEffect(() => {
     console.log("TRIGGER", from);
     if (state.newsFeed.items.length === 0 || from === "/") {

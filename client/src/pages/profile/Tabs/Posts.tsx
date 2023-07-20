@@ -24,7 +24,7 @@ const Posts: React.FC<IProps> = (props) => {
   const { isOpen, openModal, closeModal } = useModal();
   const didMount = useDidMount(true);
 
-  useDocumentTitle(`Posts - ${props.username} | Socialo`);
+  useDocumentTitle(`Posts - ${props.username} | IT'z`);
   useEffect(() => {
     fetchPosts();
     // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -23,7 +23,7 @@ const Followers: React.FC<IProps> = ({ username }) => {
   const didMount = useDidMount(true);
   const [error, setError] = useState<IError | null>(null);
 
-  useDocumentTitle(`Followers - ${username} | Socialo`);
+  useDocumentTitle(`Followers - ${username} | TT'z`);
   useEffect(() => {
     fetchFollowers();
     // eslint-disable-next-line react-hooks/exhaustive-deps
