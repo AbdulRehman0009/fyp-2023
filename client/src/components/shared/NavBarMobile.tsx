@@ -82,6 +82,15 @@ const NavBarMobile: React.FC<IProps> = ({ theme, isAuth, auth, openModal }) => {
             <div className="p-2 rounded-full flex items-center justify-center cursor-pointer hover:bg-gray-200  dark:hover:bg-indigo-1100">
               <Notification isAuth={isAuth} />
             </div>
+            <div className="p-2 rounded-full flex items-center justify-center cursor-pointer hover:bg-gray-200  dark:hover:bg-indigo-1100">
+              <Link
+                to={`/jobs`}
+                className="cursor-pointer text-black"
+              >
+
+                <BsBagDash />
+              </Link>
+            </div>
           </>
         )}
         <div
@@ -99,9 +108,8 @@ const NavBarMobile: React.FC<IProps> = ({ theme, isAuth, auth, openModal }) => {
       </div>
       {/* ---- NAV DRAWER FOR MOBILE --- */}
       <div
-        className={`flex flex-col w-full h-screen fixed top-0 right-0 transition-transform  transform ${
-          isOpenMenu ? "translate-x-0" : "translate-x-full"
-        } bg-white dark:bg-indigo-1000 laptop:hidden`}
+        className={`flex flex-col w-full h-screen fixed top-0 right-0 transition-transform  transform ${isOpenMenu ? "translate-x-0" : "translate-x-full"
+          } bg-white dark:bg-indigo-1000 laptop:hidden`}
       >
         <div className="flex items-center justify-between px-4">
           <div className="flex items-center space-x-4">
@@ -138,7 +146,7 @@ const NavBarMobile: React.FC<IProps> = ({ theme, isAuth, auth, openModal }) => {
               <Link
                 className="flex items-center text-black dark:text-white"
                 onClick={onClickMenuItem}
-                to={`/user/${auth.username}/following`}
+                to={`/user/${auth.username}/jobs`}
               >
                 <BsBagDash
                   className="text-indigo-700 text-2xl dark:text-indigo-400"

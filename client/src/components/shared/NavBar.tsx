@@ -9,6 +9,7 @@ import { useModal } from "~/hooks";
 import logo from "~/images/image-removebg-preview.png";
 import { logoutStart } from "~/redux/action/authActions";
 import { IRootReducer } from "~/types/types";
+import { BsBagDash } from "react-icons/bs";
 
 
 const NavBarMobile = lazy(() => import("./NavBarMobile"));
@@ -68,7 +69,16 @@ const NavBar: React.FC<IProps> = ({ isAuth, theme }) => {
                   <li className="flex items-center justify-center w-10 h-10 cursor-pointer rounded-full hover:bg-gray-200 dark:hover:bg-indigo-1100">
                     <Notification isAuth={isAuth} />
                   </li>
-                   
+                  <li className="flex items-center text-xl justify-center w-10 h-10 cursor-pointer rounded-full hover:bg-gray-200 dark:hover:bg-indigo-1100">
+                    <Link
+                      to={`/jobs`}
+                      className="cursor-pointer text-black"
+                    >
+
+                      <BsBagDash />
+                    </Link>
+                  </li>
+
                 </ul>
                 <div className="flex items-center">
                   {/* ---- AVATAR WITH  USERNAME ----------- */}
@@ -79,7 +89,7 @@ const NavBar: React.FC<IProps> = ({ isAuth, theme }) => {
                     <div className="flex items-center">
                       <Avatar url={auth.profilePicture?.url} className="mr-2" />
                       <h6 className="text-sm mr-10 dark:text-indigo-400">
-                        @{auth.username}
+                        {auth.username}
                       </h6>
                     </div>
                   </Link>

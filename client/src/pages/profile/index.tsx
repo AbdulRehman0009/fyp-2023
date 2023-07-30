@@ -61,6 +61,13 @@ const Profile: React.FC<IProps> = (props) => {
                     auth={state.auth}
                   />
                 </Route>
+                <Route exact path={ROUTE.JOBS_POST}>
+                  <Tab.Jobs
+                    username={username}
+                    isOwnProfile={state.profile.isOwnProfile}
+                    auth={state.auth}
+                  />
+                </Route>
                 <Route path={ROUTE.PROFILE_FOLLOWERS}>
                   <Tab.Followers username={username} />
                 </Route>

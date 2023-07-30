@@ -3,6 +3,7 @@ export * from './error';
 export { default as Home } from './home';
 export { default as Login } from './login';
 export { default as Post } from './post';
+export { default as Jobs } from './jobs';
 export { default as Profile } from './profile';
 export * from './redirects';
 export { default as Register } from './register';

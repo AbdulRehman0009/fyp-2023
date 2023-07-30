@@ -54,6 +54,18 @@ const Tabs: React.FC<IProps> = ({
       </li>
       <li>
         <Link
+          to={`/user/${username}/jobs`}
+          className={`${linkStyleName} ${
+            activeNav === "jobs" &&
+            "border-indigo-700 dark:border-indigo-400  border-b-4"
+          }`}
+        >
+          <span className="hidden laptop:inline-block"> Jobs Posted</span>
+          <InfoCircleOutlined className="laptop:hidden text-2xl" />
+        </Link>
+      </li>
+      <li>
+        <Link
           to={`/user/${username}/info`}
           className={`${linkStyleName} ${
             activeNav === "info" &&

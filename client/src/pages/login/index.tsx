@@ -65,7 +65,7 @@ const Login: React.FC = () => {
       >
         {/* --- LOGO --- */}
         <Link className="absolute left-8 top-8" to="/">
-          <img src={logo} alt="Socialo Logo" className="w-24" />
+          <img src={logo} alt="IT'z Logo" className="w-24" />
         </Link>
         {/* -- INFO --- */}
         <h3 className="animate-fade text-white w-9/12 mb-14">

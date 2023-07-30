@@ -70,6 +70,7 @@ function App() {
             render={(props: any) => <pages.Home key={Date.now()} {...props} />}
           />
           <ProtectedRoute path={ROUTE.POST} component={pages.Post} />
+          <ProtectedRoute path={ROUTE.JOBS} component={pages.Jobs} />
           <ProtectedRoute path={ROUTE.PROFILE} component={pages.Profile} />
           <ProtectedRoute path={ROUTE.CHAT} component={pages.Chat} />
           <ProtectedRoute

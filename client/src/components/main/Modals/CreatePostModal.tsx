@@ -82,6 +82,17 @@ const CreatePostModal: React.FC<IProps> = (props) => {
         <div className="w-full laptop:w-40rem p-4 laptop:px-8">
           <h2 className="dark:text-white">Create Post</h2>
           <select
+            className="!py-1 mr-3 !text-sm w-32 dark:bg-indigo-1100 dark:text-white dark:border-gray-800"
+            id="privacy"
+            name="privacy"
+            onChange={handlePrivacyChange}
+            value={privacy}
+          >
+            <option value="public">Do Post </option>
+            <option value="jobpost">Post a Job</option>
+            
+          </select>
+          <select
             className="!py-1 !text-sm w-32 dark:bg-indigo-1100 dark:text-white dark:border-gray-800"
             id="privacy"
             name="privacy"
@@ -101,7 +112,7 @@ const CreatePostModal: React.FC<IProps> = (props) => {
               id="post"
               name="post"
               onChange={handleDescriptionChange}
-              placeholder="What's on your mind?"
+              placeholder=" Compose Your Post or Craft Your Perfect Job Listing!"
               rows={3}
               readOnly={isLoadingCreatePost}
               value={description}
