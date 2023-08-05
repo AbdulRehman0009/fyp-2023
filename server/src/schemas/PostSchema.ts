@@ -8,9 +8,15 @@ export enum EPrivacy {
   follower = "follower",
 }
 
+export enum IsJob {
+job="job",
+normal="normal"
+}
+
 export interface IPost extends Document {
   _author_id: IUser["_id"];
   privacy: EPrivacy;
+  job: IsJob,
   photos?: Record<string, any>[];
   description: string;
   likes: Array<IUser["_id"]>;
@@ -36,6 +42,11 @@ const PostSchema = new Schema(
       type: String,
       default: "public",
       enum: ["private", "public", "follower"],
+    },
+    job: {
+      type: String,
+      default: "normal",
+      enum: ["job", "normal"],
     },
     photos: [Object],
     description: {

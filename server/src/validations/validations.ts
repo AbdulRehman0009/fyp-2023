@@ -47,7 +47,8 @@ export const schemas = {
     createPostSchema: Joi.object().keys({
         description: Joi.string(),
         photos: Joi.array(),
-        privacy: Joi.string()
+        privacy: Joi.string(),
+        job: Joi.string()
     }),
     commentSchema: Joi.object().keys({
         body: Joi

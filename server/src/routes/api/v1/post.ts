@@ -11,7 +11,7 @@ import {
   User,
 } from "@/schemas";
 import { ENotificationType } from "@/schemas/NotificationSchema";
-import { EPrivacy } from "@/schemas/PostSchema";
+import { EPrivacy, IsJob } from "@/schemas/PostSchema";
 import {
   deleteImageFromStorage,
   multer,
@@ -30,7 +30,7 @@ router.post(
   validateBody(schemas.createPostSchema),
   async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const { description, privacy } = req.body;
+      const { description, privacy , job} = req.body;
 
       let photos = [];
       if (req.files) {
@@ -48,6 +48,7 @@ router.post(
         description: filterWords.clean(description),
         photos,
         privacy: privacy || "public",
+        job: job || "normal",
         createdAt: Date.now(),
       });
 
@@ -126,6 +127,7 @@ router.get(
       const query = {
         _author_id: user._id,
         privacy: { $in: [EPrivacy.public] },
+        job: { $in: [IsJob.normal] },
       };
       const sortQuery = {
         [sortBy || "createdAt"]: sortOrder === "asc" ? 1 : -1,
@@ -137,6 +139,10 @@ router.get(
           EPrivacy.follower,
           EPrivacy.private,
         ];
+        query.job.$in =[
+          IsJob.job,
+          IsJob.normal,
+        ]
       } else if (following.includes(user._id.toString())) {
         query.privacy.$in = [EPrivacy.public, EPrivacy.follower];
       }
@@ -272,6 +278,7 @@ router.post(
 interface IUpdate {
   description?: string;
   privacy?: EPrivacy;
+  job?: IsJob;
   updatedAt: number;
   isEdited: boolean;
 }
@@ -284,7 +291,7 @@ router.patch(
   async (req: Request, res: Response, next: NextFunction) => {
     try {
       const { post_id } = req.params;
-      const { description, privacy } = req.body;
+      const { description, privacy , job} = req.body;
       const obj: IUpdate = { updatedAt: Date.now(), isEdited: true };
 
       if (!description && !privacy) return next(new ErrorHandler(400));
