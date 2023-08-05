@@ -33,6 +33,7 @@ const Home: React.FC<IProps> = (props) => {
   const state = useSelector((state: IRootReducer) => ({
     newsFeed: state.newsFeed,
     auth: state.auth,
+    profile: state.profile,
     error: state.error.newsFeedError,
     isLoadingFeed: state.loading.isLoadingFeed,
     isLoadingCreatePost: state.loading.isLoadingCreatePost,
@@ -190,8 +191,10 @@ const Home: React.FC<IProps> = (props) => {
             <TransitionGroup component={null}>
               <div ref={infiniteRef as React.RefObject<HTMLDivElement>}>
                 {state.newsFeed.items.map(
-                  (post: IPost) =>
-                    post.author && ( // avoid render posts with null author
+                  (post: IPost) =>{
+
+                    if(post.job != "normal"){
+                      return post.author && ( // avoid render posts with null author
                       <div className="px-4 laptop:px-0 m-auto">
                         <CSSTransition
                           timeout={500}
@@ -201,6 +204,7 @@ const Home: React.FC<IProps> = (props) => {
                           <PostItem
                             key={post.id}
                             post={post}
+                            profile={state.profile}
                             likeCallback={likeCallback}
                             updateSuccessCallback={updateSuccessCallback}
                             deleteSuccessCallback={deleteSuccessCallback}
@@ -208,6 +212,8 @@ const Home: React.FC<IProps> = (props) => {
                         </CSSTransition>
                       </div>
                     )
+                    }
+                  }
                 )}
               </div>
             </TransitionGroup>

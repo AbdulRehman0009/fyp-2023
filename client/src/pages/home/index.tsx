@@ -1,4 +1,5 @@
-import { CoffeeOutlined, UndoOutlined } from "@ant-design/icons";
+import { CoffeeOutlined, UndoOutlined, PlusOutlined } from "@ant-design/icons";
+
 import { useEffect } from "react";
 import useInfiniteScroll from "react-infinite-scroll-hook";
 import { useDispatch, useSelector } from "react-redux";
@@ -32,6 +33,7 @@ interface IProps extends RouteComponentProps<any, any, ILocation> {
 const Home: React.FC<IProps> = (props) => {
   const state = useSelector((state: IRootReducer) => ({
     newsFeed: state.newsFeed,
+    profile: state.profile,
     auth: state.auth,
     error: state.error.newsFeedError,
     isLoadingFeed: state.loading.isLoadingFeed,
@@ -117,6 +119,22 @@ const Home: React.FC<IProps> = (props) => {
                 readOnly={state.isLoadingFeed || state.isLoadingCreatePost}
               />
             </div>
+            <div  style={{justifyContent:"center",cursor:"pointer" , color:"#4f6fec"}}>
+              <div
+                className="dark:bg-indigo-1000 dark:!border-gray-800 dark:text-white flex items-center text-black"
+                style={{color:"#4f6fec"}}
+                onClick={() =>
+                  !state.isLoadingCreatePost &&
+                  !state.isLoadingFeed &&
+                  openModal()
+                }
+              >  <PlusOutlined
+                  className="text-indigo-700 dark:text-indigo-400"
+                  style={{ fontSize: "25px", marginRight: "5px",marginLeft:"10px" }}
+                />
+                Create Community Group
+              </div>
+            </div>
           </div>
         )}
         {/*  --- HAS NEW FEED NOTIF --- */}
@@ -201,6 +219,7 @@ const Home: React.FC<IProps> = (props) => {
                           <PostItem
                             key={post.id}
                             post={post}
+                            profile={state.profile}
                             likeCallback={likeCallback}
                             updateSuccessCallback={updateSuccessCallback}
                             deleteSuccessCallback={deleteSuccessCallback}

@@ -29,7 +29,7 @@ const SideMenu: React.FC<IProps> = ({ username, profilePicture }) => {
           <h6 className="text-sm dark:text-white">My Jobs</h6>
         </Link>
       </li>
-      <li className="px-4 py-3 cursor-pointer mt-4 hover:bg-indigo-100  dark:hover:bg-indigo-900">
+      {/* <li className="px-4 py-3 cursor-pointer mt-4 hover:bg-indigo-100  dark:hover:bg-indigo-900">
         <Link
           to={`/user/${username}/following`}
           className="flex items-center text-black"
@@ -40,7 +40,7 @@ const SideMenu: React.FC<IProps> = ({ username, profilePicture }) => {
           />
           <h6 className="text-sm dark:text-white">Create Community Group</h6>
         </Link>
-      </li>
+      </li> */}
       <li className="px-4 py-3 cursor-pointer mt-4 hover:bg-indigo-100  dark:hover:bg-indigo-900">
         <Link
           to={`/user/${username}/following`}

@@ -142,7 +142,7 @@ const NavBarMobile: React.FC<IProps> = ({ theme, isAuth, auth, openModal }) => {
                 </div>
               </Link>
             </li>
-            <li className="p-4 cursor-pointer hover:bg-indigo-100 dark:hover:bg-indigo-1100">
+            {/* <li className="p-4 cursor-pointer hover:bg-indigo-100 dark:hover:bg-indigo-1100">
               <Link
                 className="flex items-center text-black dark:text-white"
                 onClick={onClickMenuItem}
@@ -154,7 +154,7 @@ const NavBarMobile: React.FC<IProps> = ({ theme, isAuth, auth, openModal }) => {
                 />
                 <h6 className="text-sm">My Jobs</h6>
               </Link>
-            </li>
+            </li> */}
             <li className="p-4 cursor-pointer hover:bg-indigo-100 dark:hover:bg-indigo-1100">
               <Link
                 className="flex items-center text-black dark:text-white"

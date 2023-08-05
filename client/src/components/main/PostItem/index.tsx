@@ -10,6 +10,14 @@ import relativeTime from "dayjs/plugin/relativeTime";
 import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import withAuth from "~/components/hoc/withAuth";
+import { BiMessageSquareDots } from "react-icons/bi";
+import { useDispatch } from "react-redux";
+import { initiateChat } from "~/redux/action/chatActions";
+import { useHistory } from "react-router-dom";
+import {  useSelector } from "react-redux";
+
+
+
 import {
   Comments,
   DeletePostModal,
@@ -21,18 +29,20 @@ import {
 import { Avatar, ImageGrid } from "~/components/shared";
 import { LOGIN } from "~/constants/routes";
 import { useModal } from "~/hooks";
-import { IPost } from "~/types/types";
+import { IPost, IProfile, IUser,IRootReducer } from "~/types/types";
 
 dayjs.extend(relativeTime);
 
 interface IProps {
   post: IPost;
+  profile: IProfile;
   likeCallback: (post: IPost) => void;
   updateSuccessCallback: (post: IPost) => void;
   deleteSuccessCallback: (postID: string) => void;
   isAuth: boolean;
+  
 }
-
+ 
 const PostItem: React.FC<IProps> = (props) => {
   const {
     post,
@@ -45,6 +55,11 @@ const PostItem: React.FC<IProps> = (props) => {
   const deleteModal = useModal();
   const updateModal = useModal();
   const likesModal = useModal();
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const state =  useSelector((state: IRootReducer) => ({
+    profile: state.profile,
+  }));
   const commentInputRef = useRef<HTMLInputElement | null>(null);
 
   const handleToggleComment = () => {
@@ -67,6 +82,20 @@ const PostItem: React.FC<IProps> = (props) => {
       } other ${peopleMinusSelf} ${likeMinusSelf} this.`;
     } else {
       return `${likesCount} ${people} ${like} this.`;
+    }
+  };
+  const onClickMessage = () => {
+    dispatch(
+      initiateChat({
+        username: post.author.username,
+        id: post.id,
+        fullname: state.profile.fullname || "",
+        profilePicture: state.profile.profilePicture?.url || "",
+      })
+    );
+
+    if (window.screen.width < 1024) {
+      history.push(`/chat/${state.profile.username}`);
     }
   };
 
@@ -117,6 +146,7 @@ const PostItem: React.FC<IProps> = (props) => {
       {/* --- DESCRIPTION */}
       <div className="mb-3 mt-2">
         <p className="text-gray-700 dark:text-gray-300">{post.description}</p>
+        
       </div>
       {/* --- IMAGE GRID ----- */}
       {post.photos.length !== 0 && (
@@ -173,6 +203,19 @@ const PostItem: React.FC<IProps> = (props) => {
           </span>
         </div>
       )}
+      {/* message */}
+      {!post.isOwnPost &&(
+        <div >
+          
+          <button
+                  className="button--muted !border-gray-400 !rounded-full flex items-center dark:bg-indigo-1100 dark:text-white dark:hover:text-white dark:hover:bg-indigo-900 dark:!border-gray-800"
+                  onClick={onClickMessage}
+                >
+                  <BiMessageSquareDots className="flex items-center justify-center mr-2" />
+                  Message
+                </button>
+        </div>
+      ) }
       {isAuth && (
         <>
           <Comments

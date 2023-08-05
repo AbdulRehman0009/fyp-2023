@@ -23,6 +23,7 @@ Modal.setAppElement("#root");
 const CreatePostModal: React.FC<IProps> = (props) => {
   const [description, setDescription] = useState("");
   const [privacy, setPrivacy] = useState("public");
+  const [job, setJob] = useState("normal");
   const isLoadingCreatePost = useSelector(
     (state: IRootReducer) => state.loading.isLoadingCreatePost
   );
@@ -41,12 +42,16 @@ const CreatePostModal: React.FC<IProps> = (props) => {
     const val = e.target.value;
     setPrivacy(val);
   };
-
+  const handleJobChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const val = e.target.value;
+    setJob(val);
+  };
   const onSubmit = () => {
     if (description) {
       const formData = new FormData();
       formData.set("description", description);
       formData.set("privacy", privacy);
+      formData.set("job", job);
 
       if (imageFile.length !== 0) {
         imageFile.forEach((image) => {
@@ -81,28 +86,32 @@ const CreatePostModal: React.FC<IProps> = (props) => {
         </div>
         <div className="w-full laptop:w-40rem p-4 laptop:px-8">
           <h2 className="dark:text-white">Create Post</h2>
-          <select
-            className="!py-1 mr-3 !text-sm w-32 dark:bg-indigo-1100 dark:text-white dark:border-gray-800"
-            id="privacy"
-            name="privacy"
-            onChange={handlePrivacyChange}
-            value={privacy}
-          >
-            <option value="public">Do Post </option>
-            <option value="jobpost">Post a Job</option>
-            
-          </select>
-          <select
-            className="!py-1 !text-sm w-32 dark:bg-indigo-1100 dark:text-white dark:border-gray-800"
-            id="privacy"
-            name="privacy"
-            onChange={handlePrivacyChange}
-            value={privacy}
-          >
-            <option value="public">Public</option>
-            <option value="follower">Follower</option>
-            <option value="private">Only Me</option>
-          </select>
+
+          <div className="flex ">
+            <select
+              className="!py-1 !text-sm w-32 dark:bg-indigo-1100 dark:text-white dark:border-gray-800"
+              id="privacy"
+              name="privacy"
+              onChange={handlePrivacyChange}
+              value={privacy}
+            >
+              <option value="public">Public</option>
+              <option value="follower">Follower</option>
+              <option value="private">Only Me</option>
+            </select>
+
+            <select
+              className="!py-1 !text-sm w-32 dark:bg-indigo-1100 dark:text-white dark:border-gray-800 ml-5"
+              id="job"
+              name="job"
+              onChange={handleJobChange}
+              value={job}
+            >
+              <option value="job">Job</option>
+              <option value="normal">Normal</option>
+              
+            </select>
+          </div>
           <br />
           <br />
           <div className="flex flex-col">

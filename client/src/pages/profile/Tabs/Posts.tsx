@@ -7,7 +7,8 @@ import { Avatar, Loader } from "~/components/shared";
 import { PostLoader } from "~/components/shared/Loaders";
 import { useDidMount, useDocumentTitle, useModal } from "~/hooks";
 import { createPost, getPosts } from "~/services/api";
-import { IError, IPost, IUser } from "~/types/types";
+import { IError, IPost, IUser,IRootReducer } from "~/types/types";
+import {  useSelector } from "react-redux";
 
 interface IProps {
   username: string;
@@ -23,7 +24,9 @@ const Posts: React.FC<IProps> = (props) => {
   const [error, setError] = useState<IError | null>(null);
   const { isOpen, openModal, closeModal } = useModal();
   const didMount = useDidMount(true);
-
+  const state =  useSelector((state: IRootReducer) => ({
+    profile: state.profile,
+  }));
   useDocumentTitle(`Posts - ${props.username} | IT'z`);
   useEffect(() => {
     fetchPosts();
@@ -163,6 +166,7 @@ const Posts: React.FC<IProps> = (props) => {
                   key={post.id}
                   likeCallback={likeCallback}
                   post={post}
+                  profile={state.profile}
                   updateSuccessCallback={updateSuccessCallback}
                   deleteSuccessCallback={deleteSuccessCallback}
                 />

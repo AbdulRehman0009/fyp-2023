@@ -5,13 +5,17 @@ import { Loader } from '~/components/shared';
 import { useDocumentTitle } from '~/hooks';
 import { PageNotFound } from '~/pages';
 import { getSinglePost } from '~/services/api';
-import { IError, IPost } from '~/types/types';
+import { IError, IPost,IRootReducer } from '~/types/types';
+import {  useSelector } from "react-redux";
 
 const Post: React.FC<RouteComponentProps<{ post_id: string; }>> = ({ history, match }) => {
     const [post, setPost] = useState<IPost | null>(null);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<IError | null>(null);
     const { post_id } = match.params;
+    const state =  useSelector((state: IRootReducer) => ({
+        profile: state.profile,
+      }));
 
     useDocumentTitle(`${post?.description} - Foodie` || 'View Post');
     useEffect(() => {
@@ -57,6 +61,7 @@ const Post: React.FC<RouteComponentProps<{ post_id: string; }>> = ({ history, ma
                 <div className="pt-20 w-full px-4 laptop:w-2/4 m-auto">
                     <PostItem
                         post={post}
+                        profile={state.profile}
                         likeCallback={likeCallback}
                         updateSuccessCallback={updateSuccessCallback}
                         deleteSuccessCallback={deleteSuccessCallback}

@@ -7,7 +7,9 @@ import { Avatar, Loader } from "~/components/shared";
 import { PostLoader } from "~/components/shared/Loaders";
 import { useDidMount, useDocumentTitle, useModal } from "~/hooks";
 import { createPost, getPosts } from "~/services/api";
-import { IError, IPost, IUser } from "~/types/types";
+import { IError, IPost, IUser,IRootReducer } from "~/types/types";
+import {  useSelector } from "react-redux";
+
 
 interface IProps {
   username: string;
@@ -23,8 +25,10 @@ const Posts: React.FC<IProps> = (props) => {
   const [error, setError] = useState<IError | null>(null);
   const { isOpen, openModal, closeModal } = useModal();
   const didMount = useDidMount(true);
-
-  useDocumentTitle(`Posts - ${props.username} | IT'z`);
+  const state =  useSelector((state: IRootReducer) => ({
+    profile: state.profile,
+  }));
+  useDocumentTitle(`Jobs Post - ${props.username} | IT'z`);
   useEffect(() => {
     fetchPosts();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -157,17 +161,22 @@ const Posts: React.FC<IProps> = (props) => {
           ref={infiniteRef as React.RefObject<HTMLDivElement>}
         >
           <TransitionGroup component={null}>
-            {posts.map((post) => (
-              <CSSTransition timeout={500} classNames="fade" key={post.id}>
-                <PostItem
-                  key={post.id}
-                  likeCallback={likeCallback}
-                  post={post}
-                  updateSuccessCallback={updateSuccessCallback}
-                  deleteSuccessCallback={deleteSuccessCallback}
-                />
-              </CSSTransition>
-            ))}
+            {posts.map((post) => {
+              if(post.job != "normal"){
+                return (
+                  <CSSTransition timeout={500} classNames="fade" key={post.id}>
+                    <PostItem
+                      key={post.id}
+                      likeCallback={likeCallback}
+                      post={post}
+                      profile={state.profile}
+                      updateSuccessCallback={updateSuccessCallback}
+                      deleteSuccessCallback={deleteSuccessCallback}
+                    />
+                  </CSSTransition>
+                )
+              }
+            })}
           </TransitionGroup>
           {posts.length !== 0 && !error && isLoading && (
             <div className="flex justify-center py-6">
