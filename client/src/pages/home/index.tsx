@@ -119,22 +119,7 @@ const Home: React.FC<IProps> = (props) => {
                 readOnly={state.isLoadingFeed || state.isLoadingCreatePost}
               />
             </div>
-            <div  style={{justifyContent:"center",cursor:"pointer" , color:"#4f6fec"}}>
-              <div
-                className="dark:bg-indigo-1000 dark:!border-gray-800 dark:text-white flex items-center text-black"
-                style={{color:"#4f6fec"}}
-                onClick={() =>
-                  !state.isLoadingCreatePost &&
-                  !state.isLoadingFeed &&
-                  openModal()
-                }
-              >  <PlusOutlined
-                  className="text-indigo-700 dark:text-indigo-400"
-                  style={{ fontSize: "25px", marginRight: "5px",marginLeft:"10px" }}
-                />
-                Create Community Group
-              </div>
-            </div>
+           
           </div>
         )}
         {/*  --- HAS NEW FEED NOTIF --- */}

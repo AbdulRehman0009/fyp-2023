@@ -22,6 +22,12 @@ Modal.setAppElement("#root");
 
 const CreatePostModal: React.FC<IProps> = (props) => {
   const [description, setDescription] = useState("");
+  const [jobtitle, setJobtitle] = useState("");
+  const [jobdescription, setdJobescription] = useState("");
+  const [jobsalary, setSalary] = useState("");
+  const [jobapplied, setApplied] = useState("");
+
+
   const [privacy, setPrivacy] = useState("public");
   const [job, setJob] = useState("normal");
   const isLoadingCreatePost = useSelector(
@@ -37,6 +43,30 @@ const CreatePostModal: React.FC<IProps> = (props) => {
     const val = e.target.value;
     setDescription(val);
   };
+  const handletitleChange = (
+    e: React.ChangeEvent<HTMLTextAreaElement>
+  ) => {
+    const val = e.target.value;
+    setJobtitle(val);
+  };
+  const handlejobdescChange = (
+    e: React.ChangeEvent<HTMLTextAreaElement>
+  ) => {
+    const val = e.target.value;
+    setdJobescription(val);
+  };
+  const handlesalaryChange = (
+    e: React.ChangeEvent<HTMLTextAreaElement>
+  ) => {
+    const val = e.target.value;
+    setSalary(val);
+  };
+  const handapplyChange = (
+    e: React.ChangeEvent<HTMLTextAreaElement>
+  ) => {
+    const val = e.target.value;
+    setApplied(val);
+  };
 
   const handlePrivacyChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const val = e.target.value;
@@ -47,24 +77,32 @@ const CreatePostModal: React.FC<IProps> = (props) => {
     setJob(val);
   };
   const onSubmit = () => {
-    if (description) {
-      const formData = new FormData();
-      formData.set("description", description);
-      formData.set("privacy", privacy);
-      formData.set("job", job);
 
-      if (imageFile.length !== 0) {
-        imageFile.forEach((image) => {
-          if (image.file) formData.append("photos", image.file);
-        });
-      }
-
-      props.dispatchCreatePost(formData);
-      toast("Creating post...");
-      setDescription("");
-      clearFiles();
-      props.closeModal();
+    const formData = new FormData();
+    formData.set("description", description);
+    if (jobtitle) {
+      formData.set("jobtitle", jobtitle);
     }
+    formData.set("jobdescription", jobdescription);
+    formData.set("jobsalary", jobsalary);
+    formData.set("jobapplied", jobapplied);
+    
+    formData.set("job", job);
+
+    if (imageFile.length !== 0) {
+      imageFile.forEach((image) => {
+        if (image.file) formData.append("photos", image.file);
+      });
+    }
+
+    props.dispatchCreatePost(formData);
+    toast("Creating post...");
+    setDescription("");
+    setJobtitle("");
+    setdJobescription("");
+    clearFiles();
+    props.closeModal();
+
   };
 
   return (
@@ -109,13 +147,78 @@ const CreatePostModal: React.FC<IProps> = (props) => {
             >
               <option value="job">Job</option>
               <option value="normal">Normal</option>
-              
+
             </select>
           </div>
           <br />
           <br />
           <div className="flex flex-col">
-            <textarea
+            {(() => {
+              if (job === 'job') {
+                return <p>
+                  <textarea
+                    className="dark:bg-indigo-1100 dark:text-white dark:!border-gray-800 mb-1"
+                    cols={3}
+                    id="post"
+                    name="post"
+                    onChange={handletitleChange}
+                    placeholder=" Job Title"
+                    rows={1}
+                    readOnly={isLoadingCreatePost}
+                    value={jobtitle}
+                  />
+                  <textarea
+                    className="dark:bg-indigo-1100 dark:text-white dark:!border-gray-800 mb-1"
+                    cols={3}
+                    id="post"
+                    name="post"
+                    onChange={handlejobdescChange}
+                    placeholder="Job Description/Responsibilities/Requirnments"
+                    rows={3}
+                    readOnly={isLoadingCreatePost}
+                    value={jobdescription}
+                  />
+                  <textarea
+                    className="dark:bg-indigo-1100 dark:text-white dark:!border-gray-800 mb-1"
+                    cols={3}
+                    id="post"
+                    name="post"
+                    onChange={handlesalaryChange}
+                    placeholder="Salary"
+                    rows={1}
+                    readOnly={isLoadingCreatePost}
+                    value={jobsalary}
+                  />
+                  <textarea
+                    className="dark:bg-indigo-1100 dark:text-white dark:!border-gray-800 mb-1"
+                    cols={3}
+                    id="post"
+                    name="post"
+                    onChange={handapplyChange}
+                    placeholder="Send your resume at _________"
+                    rows={1}
+                    readOnly={isLoadingCreatePost}
+                    value={jobapplied}
+                  />
+                </p>;
+              } else {
+                return <p>
+
+                  <textarea
+                    className="dark:bg-indigo-1100 dark:text-white dark:!border-gray-800"
+                    cols={3}
+                    id="post"
+                    name="post"
+                    onChange={handleDescriptionChange}
+                    placeholder=" Compose Your Post or Craft Your Perfect Job Listing!"
+                    rows={3}
+                    readOnly={isLoadingCreatePost}
+                    value={description}
+                  />
+                </p>;
+              }
+            })()}
+            {/* <textarea
               className="dark:bg-indigo-1100 dark:text-white dark:!border-gray-800"
               cols={3}
               id="post"
@@ -125,7 +228,7 @@ const CreatePostModal: React.FC<IProps> = (props) => {
               rows={3}
               readOnly={isLoadingCreatePost}
               value={description}
-            />
+            /> */}
             <div className="flex items-center">
               {/* --- UPLOAD OPTIONS */}
               <div className="flex items-center flex-grow">

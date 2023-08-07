@@ -44,6 +44,10 @@ export interface IPost {
   photos: Record<string, any>[];
   comments: any[];
   description: string;
+  jobtitle: string;
+  jobdescription:string;
+  jobsalary:string;
+  jobapplied:string;
   likes: any[];
   author: IUser;
   commentsCount: number;
@@ -140,6 +144,10 @@ export interface IRegister {
 
 export interface ICreatePost {
   description: string;
+  jobtitle: string;
+  jobdescription:string;
+  jobsalary:string;
+  jobapplied:string;
   photos?: [];
 }
 

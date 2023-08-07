@@ -145,7 +145,13 @@ const PostItem: React.FC<IProps> = (props) => {
       </div>
       {/* --- DESCRIPTION */}
       <div className="mb-3 mt-2">
-        <p className="text-gray-700 dark:text-gray-300">{post.description}</p>
+      <p className="text-gray-700 dark:text-gray-300">{post.description}</p>
+
+      <b className="text-gray-700 dark:text-gray-300">{post.jobtitle}</b>
+      <p className="text-gray-700 dark:text-gray-300">{post.jobdescription}</p>
+      <p className="text-gray-700 dark:text-gray-300">{post.jobsalary}</p>
+      <p className="text-gray-700 dark:text-gray-300">{post.jobapplied}</p>
+      
         
       </div>
       {/* --- IMAGE GRID ----- */}
@@ -204,18 +210,7 @@ const PostItem: React.FC<IProps> = (props) => {
         </div>
       )}
       {/* message */}
-      {!post.isOwnPost &&(
-        <div >
-          
-          <button
-                  className="button--muted !border-gray-400 !rounded-full flex items-center dark:bg-indigo-1100 dark:text-white dark:hover:text-white dark:hover:bg-indigo-900 dark:!border-gray-800"
-                  onClick={onClickMessage}
-                >
-                  <BiMessageSquareDots className="flex items-center justify-center mr-2" />
-                  Message
-                </button>
-        </div>
-      ) }
+      
       {isAuth && (
         <>
           <Comments

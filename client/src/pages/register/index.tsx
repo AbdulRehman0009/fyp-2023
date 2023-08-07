@@ -179,7 +179,7 @@ const Register: React.FC = () => {
             </div>
             <i className="social-login-divider">OR</i>
             <div className="flex justify-between space-x-2">
-              <SocialLogin isLoading={isLoading} />
+              {/* <SocialLogin isLoading={isLoading} /> */}
             </div>
           </form>
           <div className="text-center mt-8">

@@ -194,6 +194,7 @@ const Home: React.FC<IProps> = (props) => {
                   (post: IPost) =>{
 
                     if(post.job != "normal"){
+                      
                       return post.author && ( // avoid render posts with null author
                       <div className="px-4 laptop:px-0 m-auto">
                         <CSSTransition
