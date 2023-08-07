@@ -19,6 +19,10 @@ export interface IPost extends Document {
   job: IsJob,
   photos?: Record<string, any>[];
   description: string;
+  jobtitle: string;
+  jobdescription:string;
+  jobsalary:string;
+  jobapplied:string;
   likes: Array<IUser["_id"]>;
   comments: Array<IComment["_id"]>;
   isEdited: boolean;
@@ -50,6 +54,22 @@ const PostSchema = new Schema(
     },
     photos: [Object],
     description: {
+      type: String,
+      default: "",
+    },
+    jobtitle: {
+      type: String,
+      default: "",
+    },  
+    jobdescription: {
+      type: String,
+      default: "",
+    },
+    jobsalary: {
+      type: String,
+      default: "",
+    },
+    jobapplied: {
       type: String,
       default: "",
     },

@@ -30,7 +30,7 @@ router.post(
   validateBody(schemas.createPostSchema),
   async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const { description, privacy , job} = req.body;
+      const { description, jobtitle, jobdescription, jobsalary, jobapplied, privacy, job } = req.body;
 
       let photos = [];
       if (req.files) {
@@ -45,7 +45,11 @@ router.post(
       const post = new Post({
         _author_id: req.user._id,
         // author: req.user._id,
-        description: filterWords.clean(description),
+        description,
+        jobtitle,
+        jobdescription,
+        jobsalary,
+        jobapplied,
         photos,
         privacy: privacy || "public",
         job: job || "normal",
@@ -139,7 +143,7 @@ router.get(
           EPrivacy.follower,
           EPrivacy.private,
         ];
-        query.job.$in =[
+        query.job.$in = [
           IsJob.job,
           IsJob.normal,
         ]
@@ -277,6 +281,7 @@ router.post(
 
 interface IUpdate {
   description?: string;
+  
   privacy?: EPrivacy;
   job?: IsJob;
   updatedAt: number;
@@ -291,7 +296,7 @@ router.patch(
   async (req: Request, res: Response, next: NextFunction) => {
     try {
       const { post_id } = req.params;
-      const { description, privacy , job} = req.body;
+      const { description, privacy, job } = req.body;
       const obj: IUpdate = { updatedAt: Date.now(), isEdited: true };
 
       if (!description && !privacy) return next(new ErrorHandler(400));

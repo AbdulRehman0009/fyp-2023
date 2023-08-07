@@ -45,7 +45,11 @@ export const schemas = {
         username
     }).options({ abortEarly: false }),
     createPostSchema: Joi.object().keys({
-        description: Joi.string(),
+        description: Joi.string().empty("").default(""),
+        jobtitle: Joi.string().empty("").default(""),
+        jobdescription:Joi.string().empty("").default(""),
+        jobsalary:Joi.string().empty("").default(""),
+        jobapplied:Joi.string().empty("").default(""),
         photos: Joi.array(),
         privacy: Joi.string(),
         job: Joi.string()
